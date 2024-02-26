@@ -7,3 +7,4 @@ make
 
 cp buildsa ../buildsa
 cp inspectsa ../inspectsa
+cp querysa ../querysa

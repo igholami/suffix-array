@@ -28,3 +28,13 @@ add_executable(inspectsa src/inspectsa.cpp
         src/genome.cpp
         src/genome.h)
 target_link_libraries(inspectsa ${Boost_LIBRARIES})
+add_executable(querysa src/querysa.cpp
+        src/query.cpp
+        src/query.h
+        src/sa_index.cpp
+        src/sa_index.h
+        src/fasta_reader.cpp
+        src/fasta_reader.h
+        src/genome.cpp
+        src/genome.h)
+target_link_libraries(querysa ${Boost_LIBRARIES})

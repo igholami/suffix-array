@@ -86,9 +86,14 @@ namespace suffix_array {
     }
 
     std::pair<int, int> sa_index::naiveCompare(int suffix, const std::string& pattern) {
+        return naiveCompare(suffix, pattern, 0);
+    }
+
+    std::pair<int, int> sa_index::naiveCompare(int suffix, const std::string& pattern, int ensure_cp) {
         int ans = 0;
-//        std::cerr << this->input.substr(suffix, pattern.size()) << " " << pattern << "==================\n";
-        for (auto c : pattern) {
+        suffix += ensure_cp;
+        for (int i=ensure_cp; i<pattern.size(); i++) {
+            auto c = pattern[i];
             ans ++;
             if (suffix >= this->input.size() or c > this->input[suffix])
                 return {-1, ans};

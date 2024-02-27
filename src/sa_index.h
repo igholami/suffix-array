@@ -36,6 +36,8 @@ namespace suffix_array {
         void build_faster();
 
         bool suffix_cmp(int suffix1, int suffix2);
+
+        std::pair<int, int> naiveCompare(int suffix, const std::string &pattern, int ensure_cp);
     };
 
 } // suffix_array

@@ -12,7 +12,6 @@
 namespace suffix_array {
 
     class sa_index {
-        std::string input;
 
 
     public:
@@ -38,6 +37,8 @@ namespace suffix_array {
         bool suffix_cmp(int suffix1, int suffix2);
 
         std::pair<int, int> naiveCompare(int suffix, const std::string &pattern, int ensure_cp);
+
+        std::string input;
     };
 
 } // suffix_array

@@ -13,19 +13,23 @@ namespace suffix_array {
 
     class query {
     public:
+        query(std::string name, std::string pattern, sa_index index, std::string mode);
+
         std::string name;
         std::string pattern;
-        int char_cmp_lb;
-        int char_cmp_ub;
-        int pref_interval_lb;
-        int pref_interval_ub;
+        int char_cmp_lb{};
+        int char_cmp_ub{};
+        int pref_interval_lb{};
+        int pref_interval_ub{};
         std::vector<int> hits;
 
-        query(std::string name, std::string pattern);
+        void perform();
 
-        void perform(const suffix_array::sa_index& index, const std::string& mode);
+        sa_index index;
 
-        void perform_naive(sa_index index);
+        std::pair<int, int> binary_search(bool isUpperBound);
+
+        bool optimization;
     };
 
 } // suffix_array

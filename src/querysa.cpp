@@ -43,8 +43,8 @@ public:
 void write_queries_answer(const gr::fasta_reader& fastaReader, const sa::sa_index& index, const std::string& mode, const std::string& output) {
     std::ofstream out(output);
     for (auto g : fastaReader.genomes) {
-        sa::query q(g.header, g.content);
-        q.perform(index, mode);
+        sa::query q(g.header, g.content, index, mode);
+        q.perform();
         if (mode == "prefaccel")
             out << q.name << "\t" << q.pref_interval_lb << "\t" << q.pref_interval_ub << "\t" << q.hits.size();
         else

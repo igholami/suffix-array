@@ -30,6 +30,7 @@ namespace suffix_array {
         sa_index();
 
         int naive_lcp(int suffix1, int suffix2);
+        std::pair<int, int> naiveCompare(int suffix, const std::string& pattern);
 
         void build_fast();
         void build_faster();

@@ -13,7 +13,7 @@ namespace suffix_array {
 
     class query {
     public:
-        query(std::string name, std::string pattern, sa_index index, std::string mode);
+        query(std::string name, std::string pattern, sa_index& index, const std::string& mode);
 
         std::string name;
         std::string pattern;
@@ -23,9 +23,10 @@ namespace suffix_array {
         int pref_interval_ub{};
         std::vector<int> hits;
 
+
         void perform();
 
-        sa_index index;
+        sa_index* index;
 
         std::pair<int, int> binary_search(bool isUpperBound);
 

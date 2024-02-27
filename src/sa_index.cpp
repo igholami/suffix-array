@@ -7,9 +7,22 @@
 #include <utility>
 
 namespace suffix_array {
-    sa_index::sa_index(std::string input) {
+    sa_index::sa_index(std::string input, int k) {
         this->input = std::move(input);
+        this->k = k;
     }
+
+    void sa_index::build_prefix_lookup_table() {
+        lookup_table.clear();
+        for (int i=0; i<suffixArray.size(); i++) {
+            if (suffixArray[i] + k > suffixArray.size())
+                continue;
+            auto key = input.substr(suffixArray[i], k);
+            if (lookup_table.find(key) == lookup_table.end())
+                lookup_table[key] = {i, i+1};
+            lookup_table[key] = {std::get<0>(lookup_table[key]), i + 1};
+        }
+    };
 
     void sa_index::build() {
         int n = (int)this->input.size();
@@ -59,7 +72,7 @@ namespace suffix_array {
             this->suffixArray[i] = doubled[i].second;
     }
 
-    sa_index::sa_index() {}
+    sa_index::sa_index() = default;
 
     bool sa_index::suffix_cmp(int suffix1, int suffix2) {
         while (

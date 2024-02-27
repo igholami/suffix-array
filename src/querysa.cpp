@@ -8,6 +8,9 @@
 #include "cereal/archives/binary.hpp"
 #include "cereal/types/string.hpp"
 #include "cereal/types/vector.hpp"
+#include "cereal/types/map.hpp"
+#include "cereal/types/tuple.hpp"
+
 
 namespace po = boost::program_options;
 namespace gr = genome_reader;
@@ -40,7 +43,7 @@ public:
     std::string mode;
 };
 
-void write_queries_answer(const gr::fasta_reader& fastaReader, const sa::sa_index& index, const std::string& mode, const std::string& output) {
+void write_queries_answer(const gr::fasta_reader& fastaReader, sa::sa_index& index, const std::string& mode, const std::string& output) {
     std::ofstream out(output);
     for (auto g : fastaReader.genomes) {
         sa::query q(g.header, g.content, index, mode);

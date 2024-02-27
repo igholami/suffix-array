@@ -7,13 +7,14 @@
 #include "cereal/archives/binary.hpp"
 #include "cereal/types/vector.hpp"
 #include "cereal/types/string.hpp"
+#include "cereal/types/map.hpp"
+#include "cereal/types/tuple.hpp"
 
 namespace po = boost::program_options;
 namespace gr = genome_reader;
 namespace sa = suffix_array;
 
 class input_parser {
-    int k{};
 
 public:
     void parse(int argc, char* argv[]) {
@@ -34,6 +35,7 @@ public:
 
     std::string reference;
     std::string output;
+    int k{};
 };
 
 int main(int argc, char* argv[]) {
@@ -41,19 +43,15 @@ int main(int argc, char* argv[]) {
     inputParser.parse(argc, argv);
 
     gr::fasta_reader fastaReader(inputParser.reference);
-    std::cout << fastaReader.whole_genome() << "\n";
 
-    sa::sa_index index(fastaReader.whole_genome() + "$");
+    sa::sa_index index(fastaReader.whole_genome() + "$", inputParser.k);
     index.build_faster();
+    index.build_prefix_lookup_table();
 
     std::ofstream file(inputParser.output);
     cereal::BinaryOutputArchive archive(file);
     archive(index);
     file.close();
 
-    std::cout << index.suffixArray.size() << "\n";
-    for (int i : index.suffixArray)
-        std::cout << i << " ";
-    std::cout << "\n";
     return 0;
 }

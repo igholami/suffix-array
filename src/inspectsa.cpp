@@ -7,6 +7,8 @@
 #include "cereal/archives/binary.hpp"
 #include "cereal/types/string.hpp"
 #include "cereal/types/vector.hpp"
+#include "cereal/types/map.hpp"
+#include "cereal/types/tuple.hpp"
 
 namespace po = boost::program_options;
 namespace gr = genome_reader;

@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "cereal/access.hpp"
 
 namespace suffix_array {
@@ -15,7 +16,7 @@ namespace suffix_array {
 
 
     public:
-        explicit sa_index(std::string input);
+        explicit sa_index(std::string input, int k);
 
         std::vector<int> suffixArray;
 
@@ -23,7 +24,7 @@ namespace suffix_array {
 
         template<class Archive>
         void serialize(Archive& archive) {
-            archive(this->input, this->suffixArray);
+            archive(this->input, this->suffixArray, this->lookup_table, this->k);
         }
 
         sa_index();
@@ -39,6 +40,10 @@ namespace suffix_array {
         std::pair<int, int> naiveCompare(int suffix, const std::string &pattern, int ensure_cp);
 
         std::string input;
+        std::map<std::string, std::tuple<int, int>> lookup_table;
+        int k{};
+
+        void build_prefix_lookup_table();
     };
 
 } // suffix_array

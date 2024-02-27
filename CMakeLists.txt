@@ -17,7 +17,8 @@ add_executable(buildsa src/buildsa.cpp
         src/fasta_reader.cpp
         src/fasta_reader.h
         src/genome.cpp
-        src/genome.h)
+        src/genome.h
+)
 target_link_libraries(buildsa ${Boost_LIBRARIES})
 
 add_executable(inspectsa src/inspectsa.cpp
@@ -26,7 +27,8 @@ add_executable(inspectsa src/inspectsa.cpp
         src/fasta_reader.cpp
         src/fasta_reader.h
         src/genome.cpp
-        src/genome.h)
+        src/genome.h
+)
 target_link_libraries(inspectsa ${Boost_LIBRARIES})
 add_executable(querysa src/querysa.cpp
         src/query.cpp
@@ -36,5 +38,6 @@ add_executable(querysa src/querysa.cpp
         src/fasta_reader.cpp
         src/fasta_reader.h
         src/genome.cpp
-        src/genome.h)
+        src/genome.h
+)
 target_link_libraries(querysa ${Boost_LIBRARIES})

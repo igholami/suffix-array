@@ -1,6 +1,7 @@
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 #include "fasta_reader.h"
 #include "sa_index.h"

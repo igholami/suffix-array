@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.22)
 project(CMSC701_A0)
 
 set(CMAKE_CXX_STANDARD 17)
